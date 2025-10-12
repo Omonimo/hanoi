@@ -3,14 +3,17 @@ import java.security.InvalidAlgorithmParameterException;
 class Torre extends Lista {
 
         //Attributes Torre
-        double discos;
+        double discosEnTorre;
         double posicion;
+        double alturaMaxima;
+        double sinDisco = alturaMaxima - discosEnTorre;
         //Disco disco;
 
         //Constructor Torre
         public Torre(double discos, double posicion){
-            this.discos = discos;
+            this.discosEnTorre = discosEnTorre;
             this.posicion = posicion;
+            this.alturaMaxima = alturaMaxima;
 
         }
 
@@ -36,7 +39,14 @@ class Torre extends Lista {
 
         }
 
-        //setTorre
-        //get Torre
+        //metodo mueve
+      
+//metodo espaciosDisco, cada espacio dentro del disco es un unaidad de radio
+        public String estadoTorre(double alturaMaxima, double discosEnTorre, double sinDisco){
+            //radios de disco rerepsentados por espacios en blanco, sin discops se ve la torre |
+            
+
+        }
+        
     }    
     
