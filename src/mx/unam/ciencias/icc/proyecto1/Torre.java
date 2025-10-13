@@ -36,6 +36,12 @@ class Torre extends Lista {
                 return radio;
             }
 
+            @Override
+            public String toString(){
+                // formatea con dos dígitos, por ejemplo 01, 02, 10
+                return String.format("%02d", radio);
+            }
+
 
         }
 
@@ -60,9 +66,27 @@ class Torre extends Lista {
             } 
         } */
 
-        public String imprimeTorre(Torre aImprimir){
-            //conseguir 
-            return aImprimir.reversa().toString(); 
+        /**
+         * Imprime la torre en consola (desde la base hacia la cima).
+         */
+        public String imprimeTorre(){
+           // queremos imprimir desde la base hacia la cima
+           Lista rev = this.reversa();
+           String s = "";
+           Nodo n = rev.getCabeza();
+           while(n != null){
+               Object elem = n.get();
+               if (elem instanceof Disco){
+                   Disco d = (Disco)elem;
+                   s = s + "[" + String.format("%02d", d.getRadio()) + "]";
+               } else if (elem != null){
+                   s = s + "[" + elem.toString() + "]";
+               } else {
+                   s = s + "[  ]";
+               }
+               n = n.getSiguiente();
+           }
+           return s;
         }
 
          public void mueve(Torre destino){
@@ -79,9 +103,13 @@ class Torre extends Lista {
            
         }}
 
-        public void agregaDisco(double radio){
+        public void agregaDisco(int radio){
             Disco nuevoDisco = new Disco(radio);
             this.agregaInicio(nuevoDisco);
+        }
+
+        public int setLongitud(int longitud){
+            return longitud;
         }
         
     }    
