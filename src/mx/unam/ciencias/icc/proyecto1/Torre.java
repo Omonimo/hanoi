@@ -6,7 +6,8 @@ class Torre extends Lista {
         int alturaMaxima;
         int posicion;
         int longitud; // discos en torres
-        char nombre;
+        char nombre; 
+    
     
         //Disco disco;
 

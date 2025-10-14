@@ -78,7 +78,7 @@ public class Main {
 
     //intanciar torres en estado de inicio
 	//numero de discos, posicion, altura maxima, sinDisco
-    Torre t1 = new Torre(alturaTotal, 1, alturaTotal, 'A');
+    Torre t1 = new Torre(alturaTotal, 1, alturaTotal, '1');
 
     int i;
     for(i = 1; i <= alturaTotal; i++){
@@ -86,8 +86,8 @@ public class Main {
         t1.agregaFinal(disco);
     }
 
-    Torre t2 = new Torre(alturaTotal, 2, 0, 'B');
-    Torre t3 = new Torre(alturaTotal, 3, 0, 'C');
+    Torre t2 = new Torre(alturaTotal, 2, 0, '2');
+    Torre t3 = new Torre(alturaTotal, 3, 0, '3');
     // imprimir estado inicial
     mostrarTorres(t1, t2, t3);
 
@@ -95,119 +95,65 @@ public class Main {
     hanoi(t1, t3, t2, alturaTotal);
 }
 
-// Metodo hanoi recursivo
-// from/t1 to/t2 auxiliary/t3
-//from aux to 
-//aux to from
-/* public static void hanoi(Torre t1, Torre t2, Torre t3, int discos) {
-    if (discos == 1) {
-        t1.mueve(t3);
-        mostrarTorres(t1, t2, t3);
-        return;
-    } else{
-    //System.out.println("Antes de 1 2 3");
-    //mostrarTorres(t1, t2, t3);
-    hanoi(t1, t3, t2, discos - 1);
-    //System.out.println("Antes de mueve");
-    mostrarTorres(t1, t2, t3);
-    t1.mueve(t3);
-    //System.out.println("Despues de mueve");
-        mostrarTorres(t1, t2, t3);
-    hanoi(t2, t1, t3, discos - 1);
-    //System.out.println("Despues de 2 1 3");
-        //mostrarTorres(t1, t2, t3);
-}} */
-//t1,t3,t2
-/* public static void hanoi(Torre start, Torre end, Torre temp, int discos) {
-    if (discos == 1) {
-        //t1.mueve(t3);
-        //mostrarTorres(t1, t2, t3);
-        System.out.println("Moviendo disco superior de " + start.nombre + " a torre " + end.nombre);
-        //return;
-        start.mueve(end);
-        mostrarTorres(start, temp, end);
-    } else{
-    //System.out.println("Antes de 1 2 3");
-    //mostrarTorres(t1, t2, t3);
-    hanoi(start, temp, end, discos - 1);
-    //System.out.println("Antes de mueve");
-    //mostrarTorres(t1, t2, t3);
-    //t1.mueve(t3);
-    //System.out.println("Despues de mueve");
-        //mostrarTorres(t1, t2, t3);
-        System.out.println("Moviendo disco superior de " + start.nombre + " a torre " + end.nombre);
-    start.mueve(end);
-    mostrarTorres(start, end, temp);
-        hanoi(temp, end, start, discos - 1);
-    //System.out.println("Despues de 2 1 3");
-        //mostrarTorres(t1, t2, t3);
-    }} */
-
 public static void hanoi(Torre start, Torre end, Torre temp, int discos) {
     if (discos == 0) {
         
     return;
     
     } else{
-    //System.out.println("Antes de 1 2 3");/
     //mostrarTorres(t1, t2, t3);
     hanoi(start, temp, end, discos - 1);
-    //System.out.println("Antes de mueve");
-    //mostrarTorres(t1, t2, t3);
-    //t1.mueve(t3);
-    //System.out.println("Despues de mueve");
         //mostrarTorres(t1, t2, t3);
-        System.out.println("Moviendo disco superior de " + start.nombre + " a torre " + end.nombre);
     start.mueve(end);
     mostrarTorres(start, temp, end);
         hanoi(temp, end, start, discos - 1);
-    //System.out.println("Despues de 2 1 3");
-        //mostrarTorres(t1, t2, t3);
     }}
 
+
+    public static void guionesPorImprimir(int alturaTotal){
+
+        double guiones = 4 + (4 * alturaTotal) + 4;
+        double i;
+        for(i = 0; i <= guiones; i++){
+            System.out.print("-");
+            
+        } 
+    }
 
 // Metodo para imprimir torres en consola
 public static void mostrarTorres(Torre t1, Torre t2, Torre t3) {
     
  // línea en blanco para separar pasos
-    if(t1.nombre == 'A') {
-    System.out.println(t1.imprimeTorre());
-    } else if(t2.nombre == 'A') {
-    System.out.println(t2.imprimeTorre());
+    if(t1.nombre == '1') {
+    System.out.println(t1.nombre + ": " + t1.imprimeTorre());
+    } else if(t2.nombre == '1') {
+    System.out.println(t2.nombre + ": " + t2.imprimeTorre());
     } else {
-    System.out.println(t3.imprimeTorre());
+    System.out.println(t3.nombre + ": "  + t3.imprimeTorre());
     }
 
-    if(t1.nombre == 'B') {
-    System.out.println(t1.imprimeTorre());
-    } else if(t2.nombre == 'B') {
-    System.out.println(t2.imprimeTorre());
+    if(t1.nombre == '2') {
+    System.out.println(t1.nombre + ": " + t1.imprimeTorre());
+    } else if(t2.nombre == '2') {
+    System.out.println(t2.nombre + ": " + t2.imprimeTorre());
     } else {
-    System.out.println(t3.imprimeTorre());
+    System.out.println(t3.nombre + ": " + t3.imprimeTorre());
     }
 
-    if(t1.nombre == 'C') {
-    System.out.println(t1.imprimeTorre());
-    } else if(t2.nombre == 'C') {
-    System.out.println(t2.imprimeTorre());
+    if(t1.nombre == '3') {
+    System.out.println(t1.nombre + ": " + t1.imprimeTorre());
+    } else if(t2.nombre == '3') {
+    System.out.println(t2.nombre + ": " + t2.imprimeTorre());
     } else {
-    System.out.println(t3.imprimeTorre());
+    System.out.println(t3.nombre + ": " + t3.imprimeTorre());
     }
 
-
-
-
-    /* System.out.println(t1.nombre + ": " + t1.imprimeTorre() +
-            "\n" + t2.nombre + ": "+ t2.imprimeTorre() +
-            "\n" + t3.nombre + ": " + t3.imprimeTorre() +
-            "\n---------------------");
-*/
+    // imprimir guiones según la altura máxima de las torres
+    int maxLong = Math.max(t1.longitud, Math.max(t2.longitud, t3.longitud));
+    guionesPorImprimir(maxLong);
+    System.out.println();
     } 
-    /**
-     * Regresa true si el algoritmo de Hanoi se está ejecutando.
-     */
-    public static boolean ejecucioHanoi(){
-        return isHanoiRunning();
+
+    
     }
 
-}
