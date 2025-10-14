@@ -3,17 +3,19 @@ import java.security.InvalidAlgorithmParameterException;
 class Torre extends Lista {
 
         //Attributes Torre
-        int discosEnTorre;
+        int alturaMaxima;
         int posicion;
-        int longitud;
+        int longitud; // discos en torres
+        char nombre;
     
         //Disco disco;
 
         //Constructor Torre
-        public Torre(int discosEnTorre, int posicion, int longitud){
-            this.discosEnTorre = discosEnTorre;
+        public Torre(int alturaMaxima, int posicion, int longitud, char nombre){
+            this.alturaMaxima = alturaMaxima;
             this.posicion = posicion;
             this.longitud = longitud;
+            this.nombre = nombre;
        
         }
 
@@ -92,6 +94,7 @@ class Torre extends Lista {
          public void mueve(Torre destino){
 
             if(destino instanceof Torre){
+            //System.out.println("Moviendo disco de torre " + this.nombre + " a torre " + destino.nombre);
             //obtener el primer nodo de la torre origen
             Lista.Nodo nodoOrigen = this.getCabeza();
             Disco discoDesplazado = null;
