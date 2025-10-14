@@ -5,40 +5,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main {
 
-    /* Flag que indica si el algoritmo de Hanoi se está ejecutando. */
-    private static final AtomicBoolean hanoiRunning = new AtomicBoolean(false);
-
-    /**
-     * Regresa true si Hanoi está en ejecución.
-     */
-    public static boolean isHanoiRunning() {
-        return hanoiRunning.get();
-    }
-
-    /**
-     * Wrapper que marca el inicio/final de la ejecución y llama al método
-     * recursivo `hanoi`.
-     */
-    public static void startHanoi(Torre t1, Torre t2, Torre t3, int discos) {
-        hanoiRunning.set(true);
-        try {
-            hanoi(t1, t2, t3, discos);
-        } finally {
-            hanoiRunning.set(false);
-        }
-    }
-
     public static void main(String[] args){
 	//preguntar a usuario numero de discos
 	int alturaTotal = 0;
 	Scanner scanner = new Scanner(System.in);
+
+    //modo automatico o manual
+    boolean modoAutomatico = false;
+
 	while(true){
 	System.out.println("Ingresa un numero mayor a 0 y menor que  2,147,483,647");
     
-	//revisar si el numero es mayo a 0 y menor a Double.MAX_VALUE
-	
-	
-	
+	//revisar si el numero es mayo a 0 y menor a Integer.MAX_VALUE
 	try {
         int discos = scanner.nextInt();
         if(discos > 0 && discos < Integer.MAX_VALUE) {
@@ -89,24 +67,34 @@ public class Main {
     Torre t2 = new Torre(alturaTotal, 2, 0, '2');
     Torre t3 = new Torre(alturaTotal, 3, 0, '3');
     // imprimir estado inicial
+    Lista pila = new Lista();
     mostrarTorres(t1, t2, t3);
 
     //llamar metodo hanoi
-    hanoi(t1, t3, t2, alturaTotal);
+    hanoi(t1, t3, t2, alturaTotal, pila);
 }
 
-public static void hanoi(Torre start, Torre end, Torre temp, int discos) {
+public static void hanoi(Torre start, Torre end, Torre temp, int discos, Lista pila) {
+
+    //crear pila de ejecucion
+    PilaEjecucion r = new PilaEjecucion(start.posicion, temp.posicion, end.posicion, discos, ' ');
+    pila.agregaInicio(r);
+
+
     if (discos == 0) {
         
     return;
     
     } else{
     //mostrarTorres(t1, t2, t3);
-    hanoi(start, temp, end, discos - 1);
+    hanoi(start, temp, end, discos - 1, pila);
         //mostrarTorres(t1, t2, t3);
     start.mueve(end);
+    if(pila instanceof PilaEjecucion)
+        ((PilaEjecucion) pila).setTipo('d');
+    mostrarPila(pila);
     mostrarTorres(start, temp, end);
-        hanoi(temp, end, start, discos - 1);
+        hanoi(temp, end, start, discos - 1, pila);
     }}
 
 
@@ -153,6 +141,16 @@ public static void mostrarTorres(Torre t1, Torre t2, Torre t3) {
     guionesPorImprimir(maxLong);
     System.out.println();
     } 
+    public static void mostrarPila(Lista pila){
+        Lista.Nodo n = pila.getCabeza();
+        while(n != null){
+            Object elem = n.get();
+            if (elem instanceof PilaEjecucion){
+                PilaEjecucion p = (PilaEjecucion) elem;
+                System.out.println(p.toString());
+            }
+            n = n.getSiguiente();}
+    }
 
     
     }
