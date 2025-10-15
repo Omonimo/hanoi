@@ -1,4 +1,6 @@
+package mx.unam.ciencias.icc.proyecto1;
 import java.util.Scanner;
+
 
 public class Main {
 
@@ -6,16 +8,25 @@ public class Main {
         int alturaTotal = 0;
         boolean automatico = false; // false = manual, true = automático
         
-        // 1. Validar el número correcto de argumentos
-        if (args.length != 3) {
-            System.out.println("Uso correcto: java TorreDeHanoi -d <numerodediscos> -a|-m");
-            System.out.println("  -d: Número de discos (entero positivo).");
-            System.out.println("  -a: Modo automático.");
-            System.out.println("  -m: Modo manual.");
-            return; // Salir si no hay argumentos correctos
+        //validar el número correcto de argumentos
+        if(args.equals("-h") || args.equals("--help")){
+            System.out.println("Como ejecutar el programa: java TorreDeHanoi -d <numerodediscos> -a|-m");
+            System.out.println("  -d: Numero de discos mayor a 0 y menor que 2,147,483,647.");
+            System.out.println("  -a: Modo automático. Imprime en la consola la Torre de Hanoi.");
+            System.out.println("  -m: Modo manual. Presiona ENTER para imprimir cada movimiento.");
+            return;
         }
 
-        // 2. Procesar el argumento -d para el número de discos
+        if (args.length != 3) {
+            System.out.println("Uso correcto: java TorreDeHanoi -d <numerodediscos> -a|-m");
+            System.out.println("  -d: Número de discos mayor a 0 y menor que 2,147,483,647.");
+            System.out.println("  -a: Modo automático.");
+            System.out.println("  -m: Modo manual.");
+            System.out.println("  -h: Para ayuda.");
+            return;
+        }
+
+        //Verificar el argumento -d para el número de discos
         if (args[0].equals("-d")) {
             try {
                 int discos = Integer.parseInt(args[1]);
@@ -34,7 +45,7 @@ public class Main {
             return;
         }
 
-        // 3. Procesar el argumento para el modo de juego (-a o -m)
+        //procesar modo de ejecucion
         if (args[2].equals("-a")) {
             automatico = true;
         } else if(args[2].equals("-m")) {
@@ -59,21 +70,19 @@ public class Main {
         // Crear pila de ejecución
         Lista pila = new Lista();
 
-        // Llamar método hanoi con pila de ejecución
+        // Llamar metodo hanoi con pila de ejecución
         hanoi(t1, t2, t3, alturaTotal, pila, automatico);
         
         // Mostrar estado final (pila vacía)
         mostrarTorres(t1, t2, t3);
-        System.out.println("¡Resuelto!");
+   
     }
 
-    // Método hanoi con pila de ejecución y control de modo
     public static void hanoi(Torre t1, Torre t2, Torre t3, int discos, Lista pila, boolean automatico){
-        // Crear entrada en la pila de ejecución (sin tipo inicial)
         PilaEjecucion r = new PilaEjecucion(t1.posicion, t2.posicion, t3.posicion, discos, ' ');
         pila.agregaInicio(r);
         
-        // Mostrar pila y torres al entrar a la llamada
+        // Imprimir pila y torres al entrar a la llamada
         mostrarPila(pila);
         mostrarTorres(t1, t2, t3);
         
@@ -87,7 +96,7 @@ public class Main {
             t1.mueve(t3);
             r.setTipo('i');
             
-            // Mostrar después del movimiento
+            // Mostrar despues del movimiento
             mostrarPila(pila);
             mostrarTorres(t1, t2, t3);
             
@@ -106,13 +115,13 @@ public class Main {
         
         // Mover el disco más grande de t1 a t3
         t1.mueve(t3);
-        // Cambiar tipo a 'd' (después de mover)
+        // Cambiar tipo a 'd' (despues de mover)
         r.setTipo('d');
-        // Mostrar pila y torres después del movimiento
+        // Mostrar pila y torres despues del movimiento
         mostrarPila(pila);
         mostrarTorres(t1, t2, t3);
         
-        // Esperar en modo manual después del movimiento principal
+        // Esperar en modo manual despues del movimiento principal
         if (!automatico) {
             esperarEnter();
         }
@@ -124,7 +133,7 @@ public class Main {
         pila.eliminaPrimero();
     }
 
-    // Método para esperar a que el usuario presione ENTER
+    // Metodo para esperar a que el usuario presione ENTER
     public static void esperarEnter() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Presiona ENTER para continuar...");
@@ -138,7 +147,7 @@ public class Main {
         } 
     }
 
-    // Método para imprimir torres en consola
+    // Metodo para imprimir torres en consola
     public static void mostrarTorres(Torre t1, Torre t2, Torre t3) {
         // Mostrar torre 1
         if(t1.nombre == '1') {
@@ -167,7 +176,7 @@ public class Main {
             System.out.println(t3.nombre + ": " + t3.imprimeTorre());
         }
 
-        System.out.println(); // Línea en blanco después de las torres
+        System.out.println();
     }
     
     public static void mostrarPila(Lista pila){
@@ -183,7 +192,7 @@ public class Main {
                 }
                 n = n.getSiguiente();
             }
-            System.out.println(); // Línea en blanco después de la pila
+            System.out.println(); 
         }
     }
 }

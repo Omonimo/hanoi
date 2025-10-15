@@ -1,5 +1,5 @@
 //package mx.unam.ciencias.icc;
-
+package mx.unam.ciencias.icc.proyecto1;
 /**
  * Clase para excepciones de líneas inválidas.
  */

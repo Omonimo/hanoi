@@ -1,4 +1,4 @@
-import java.security.InvalidAlgorithmParameterException;
+package mx.unam.ciencias.icc.proyecto1;
 
 class Torre extends Lista {
 
