@@ -90,8 +90,6 @@ public static void hanoi(Torre start, Torre end, Torre temp, int discos, Lista p
     hanoi(start, temp, end, discos - 1, pila);
         //mostrarTorres(t1, t2, t3);
     start.mueve(end);
-    if(pila instanceof PilaEjecucion)
-        ((PilaEjecucion) pila).setTipo('d');
     mostrarPila(pila);
     mostrarTorres(start, temp, end);
         hanoi(temp, end, start, discos - 1, pila);

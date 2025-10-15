@@ -15,7 +15,7 @@ class PilaEjecucion extends Lista {
 
     @Override
     public String toString() {
-        String etiqueta = (tipo == '\0' || tipo == ' ') ? " " : String.valueOf(tipo);
+        String etiqueta = (tipo == ' ') ? " " : String.valueOf(tipo);
         
         return String.format("[ %d %d %d %02d %s ]", a, b, c, disco, etiqueta);
     }
