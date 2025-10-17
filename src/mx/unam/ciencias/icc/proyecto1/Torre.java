@@ -48,32 +48,8 @@ class Torre extends Lista {
 
         }
 
-        //metodo mueve
-/*         public static void mueve(Torre origen, Torre destino){
-
-            if(origen instanceof Torre && destino instanceof Torre){
-            //obtener el primer nodo de la torre origen
-            Lista.Nodo nodoOrigen = origen.getCabeza();
-            //instanciar nodo a mover
-            Disco discoDesplazado = null;
-            if (nodoOrigen != null && nodoOrigen.get() instanceof Disco)
-                discoDesplazado = (Disco) nodoOrigen.get();
-               
-            //agregar disco a torre destino
-            destino.agregaInicio(discoDesplazado);
-
-            //eliminar disco de torre origen
-            Lista.Nodo nodoDestino = destino.getCabeza();
-            if (nodoDestino != null && nodoDestino.get() instanceof Disco) 
-                origen.eliminaPrimero();
-            } 
-        } */
-
-        /**
-         * Imprime la torre en consola (desde la base hacia la cima).
-         */
         public String imprimeTorre(){
-           // queremos imprimir desde la base hacia la cima
+           //imprimir desde la base hacia la cima
            Lista rev = this.reversa();
            String s = "";
            Nodo n = rev.getCabeza();
@@ -96,7 +72,7 @@ class Torre extends Lista {
 
             if(destino instanceof Torre){
             //System.out.println("Moviendo disco de torre " + this.nombre + " a torre " + destino.nombre);
-            //obtener el primer nodo de la torre origen
+            //obtener nodo cabeza de la torre origen
             Lista.Nodo nodoOrigen = this.getCabeza();
             Disco discoDesplazado = null;
             if (nodoOrigen != null && nodoOrigen.get() instanceof Disco)

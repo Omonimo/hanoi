@@ -182,7 +182,6 @@ public class Main {
     public static void mostrarPila(Lista pila){
         // Solo mostrar si la pila no está vacía
         if(!pila.esVacia()){
-            System.out.println("Pila de ejecución:");
             Lista.Nodo n = pila.getCabeza();
             while(n != null){
                 Object elem = n.get();
